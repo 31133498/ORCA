@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --canvas: #FAFAFA;
+  --canvas-elevated: #FFFFFF;
+  --canvas-dark: #0F0F0F;
+  --ink-1: #111111;
+  --ink-2: #4B5563;
+  --ink-3: #9CA3AF;
+  --chrome-1: #E5E7EB;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: #FAFAFA;
+  color: #111111;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.font-data {
+  font-family: 'DM Mono', 'Fira Code', monospace;
+}
+
+@keyframes pulseLive {
+  0%   { box-shadow: 0 0 0 0 rgba(5,150,105,0.4); }
+  70%  { box-shadow: 0 0 0 6px rgba(5,150,105,0); }
+  100% { box-shadow: 0 0 0 0 rgba(5,150,105,0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.live-dot {
+  animation: pulseLive 2s infinite;
+}
+
+.animate-fade-in {
+  animation: fadeIn 200ms ease-out;
+}
