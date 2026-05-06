@@ -3,7 +3,23 @@
     "allow": [
       "Bash(npx tsc *)",
       "Bash(python -c \"from app.routers.chat import router; print\\('chat router OK'\\)\")",
-      "Bash(npx next *)"
+      "Bash(npx next *)",
+      "Bash(python -c \"from app.main import app; routes = [r.path for r in app.routes]; print\\('\\\\n'.join\\(routes\\)\\)\")",
+      "Bash(.venv/bin/python -c ' *)",
+      "Bash(bash run.sh)",
+      "Bash(curl -s http://localhost:8000/api/health)",
+      "Bash(curl -s http://localhost:8000/openapi.json)",
+      "Bash(\"/Users/adam/iCloud Drive \\(Archive\\)/Documents/Projects/ORCA/backend/.venv/bin/pip\" list)",
+      "Bash(\"/Users/adam/iCloud Drive \\(Archive\\)/Documents/Projects/ORCA/backend/.venv/bin/pip\" install -q -r \"/Users/adam/iCloud Drive \\(Archive\\)/Documents/Projects/ORCA/backend/requirements.txt\")",
+      "Bash(uvicorn --version)",
+      "Bash(/opt/miniconda3/bin/python -c ' *)",
+      "Bash(pkill -f \"uvicorn\")",
+      "Bash(/opt/miniconda3/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload)",
+      "Bash(curl -s -X POST http://localhost:8000/chat/ -F \"message=test\")",
+      "Bash(lsof -ti:8000)",
+      "Bash(xargs kill *)",
+      "Bash(curl -s http://localhost:8000/api/queue)",
+      "Bash(curl -s -X POST http://localhost:8000/chat/ -F \"message=My data is finishing fast\")"
     ]
   }
 }

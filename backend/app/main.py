@@ -6,8 +6,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from .config import settings
 from .db import Base, SessionLocal, engine
 from .routes import intelligence, mentions, queue, stats
+from .routers import chat_router, voice_router
 from .seed import seed_demo
-from .services import process_unclassified
+from .pipeline import process_unclassified
 
 
 @asynccontextmanager
@@ -53,3 +54,5 @@ app.include_router(mentions.router)
 app.include_router(queue.router)
 app.include_router(intelligence.router)
 app.include_router(stats.router)
+app.include_router(chat_router)
+app.include_router(voice_router)

@@ -1,9 +1,12 @@
 import os
+from pathlib import Path
 from typing import ClassVar, Dict, Any
 from dotenv import load_dotenv
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-load_dotenv()
+# Load .env from the backend root regardless of the process CWD
+_env_path = Path(__file__).parent.parent / ".env"
+load_dotenv(_env_path)
 
 
 class Settings(BaseSettings):
