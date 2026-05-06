@@ -1,0 +1,180 @@
+[
+  {
+    "timestamp": "2026-05-06T11:01:58.641893",
+    "channel": "voice",
+    "customer": {
+      "name": "Baba Sikira",
+      "phone": "+2348123456789"
+    },
+    "complaint": "DATA_DEPLETION",
+    "churn_score": 90,
+    "summary": "User is experiencing fast data depletion.",
+    "transcript": [
+      {
+        "speaker": "user",
+        "text": "My data is disappearing, help me!"
+      },
+      {
+        "speaker": "agent",
+        "text": "I understand your concern, Baba Sikira. I see your current data balance is 1.5GB, and I remember you mentioned fast data depletion last week."
+      }
+    ],
+    "decision": "escalate"
+  },
+  {
+    "timestamp": "2026-05-06T11:07:50.927057",
+    "channel": "voice",
+    "customer": {
+      "name": "Baba Sikira",
+      "phone": "+2348123456789"
+    },
+    "complaint": "DATA_DEPLETION",
+    "churn_score": 65,
+    "summary": "User reported data depletion and requested help.",
+    "transcript": [
+      {
+        "speaker": "user",
+        "text": "E nle o, data mi ti tan, e jowo e ran mi lowo."
+      },
+      {
+        "speaker": "agent",
+        "text": "E nle o Baba Sikira! I see your data is depleted. I'll apply a 100MB temporary boost for you right away."
+      }
+    ],
+    "decision": "monitor"
+  },
+  {
+    "timestamp": "2026-05-06T11:08:30.789772",
+    "channel": "voice",
+    "customer": {
+      "name": "Baba Sikira",
+      "phone": "+2348123456789"
+    },
+    "complaint": "DATA_DEPLETION",
+    "churn_score": 60,
+    "summary": "User's data has finished and needs assistance.",
+    "transcript": [
+      {
+        "speaker": "user",
+        "text": "E nle o, data mi ti tan, e jowo e ran mi lowo."
+      },
+      {
+        "speaker": "agent",
+        "text": "E nle o Baba Sikira! I see your data is depleted. I'll apply a 100MB temporary boost for you right away."
+      },
+      {
+        "speaker": "user",
+        "text": "E nle o, data mi ti tan, e jowo e ran mi lowo."
+      },
+      {
+        "speaker": "agent",
+        "text": "E nle o, Baba Sikira! I understand your data is finished. I've applied a 100MB temporary boost to help you out."
+      }
+    ],
+    "decision": "monitor"
+  },
+  {
+    "timestamp": "2026-05-06T11:10:11.692370",
+    "channel": "voice",
+    "customer": {
+      "name": "Baba Sikira",
+      "phone": "+2348123456789"
+    },
+    "complaint": "DATA_DEPLETION",
+    "churn_score": 65,
+    "summary": "User reported data depletion, reset data session.",
+    "transcript": [
+      {
+        "speaker": "user",
+        "text": "E nle o, data mi ti tan, e jowo e ran mi lowo."
+      },
+      {
+        "speaker": "agent",
+        "text": "E nle o Baba Sikira! Mo ri pe data balance r\u1eb9 ni 1.5 GB. Mo ti tun data session r\u1eb9 b\u1eb9r\u1eb9 lati le ran \u1ecd l\u1ecdw\u1ecd p\u1eb9lu data ti o ti tan."
+      }
+    ],
+    "decision": "monitor"
+  },
+  {
+    "timestamp": "2026-05-06T11:11:56.178641",
+    "channel": "voice",
+    "customer": {
+      "name": "Baba Sikira",
+      "phone": "+2348123456789"
+    },
+    "complaint": "DATA_DEPLETION",
+    "churn_score": 65,
+    "summary": "User reported data depletion and asked for help",
+    "transcript": [
+      {
+        "speaker": "user",
+        "text": "E nle o, data mi ti tan, e jowo e ran mi lowo."
+      },
+      {
+        "speaker": "agent",
+        "text": "E nle o Baba Sikira! Mo ri pe data balance r\u1eb9 ni 1.5 GB. Mo ti tun data session r\u1eb9 b\u1eb9r\u1eb9 lati le ran \u1ecd l\u1ecdw\u1ecd p\u1eb9lu data ti o ti tan."
+      },
+      {
+        "speaker": "user",
+        "text": "E nle o, data mi ti tan, e jowo e ran mi lowo."
+      },
+      {
+        "speaker": "agent",
+        "text": "E nle o Baba Sikira! Mo ri pe data r\u1eb9 ti tan. Mo ti tun data session r\u1eb9 b\u1eb9r\u1eb9 lati ran \u1ecd l\u1ecdw\u1ecd."
+      }
+    ],
+    "decision": "monitor"
+  },
+  {
+    "timestamp": "2026-05-06T11:14:54.543921",
+    "channel": "voice",
+    "customer": {
+      "name": "Baba Sikira",
+      "phone": "+2348123456789"
+    },
+    "complaint": "DATA_DEPLETION",
+    "churn_score": 65,
+    "summary": "User's data has run out and is requesting assistance.",
+    "transcript": [
+      {
+        "speaker": "user",
+        "text": "E nle o, data mi ti tan, e jowo e ran mi lowo."
+      },
+      {
+        "speaker": "agent",
+        "text": "E nle o Baba Sikira! Mo ri pe data r\u1eb9 ti tan. Mo ti tun data session r\u1eb9 b\u1eb9r\u1eb9 lati ran \u1ecd l\u1ecdw\u1ecd."
+      }
+    ],
+    "decision": "monitor"
+  },
+  {
+    "timestamp": "2026-05-06T11:17:28.471212",
+    "channel": "voice",
+    "customer": {
+      "name": "Baba Sikira",
+      "phone": "+2348123456789"
+    },
+    "complaint": "DATA_DEPLETION",
+    "churn_score": 60,
+    "summary": "User reported data depleted and requested assistance.",
+    "transcript": [
+      {
+        "speaker": "user",
+        "text": "E nle o, data mi ti tan, e jowo e ran mi lowo."
+      },
+      {
+        "speaker": "agent",
+        "text": "E nle o Baba Sikira! Mo ri pe data r\u1eb9 ti tan. Mo ti tun data session r\u1eb9 b\u1eb9r\u1eb9 lati ran \u1ecd l\u1ecdw\u1ecd."
+      },
+      {
+        "speaker": "user",
+        "text": "E nle o, data mi ti tan, e jowo e ran mi lowo."
+      },
+      {
+        "speaker": "agent",
+        "text": "E nle o Baba Sikira! Mo ri pe data r\u1eb9 ti tan, mo si ti tun data session r\u1eb9 b\u1eb9r\u1eb9 lati ran \u1ecd l\u1ecdw\u1ecd."
+      }
+    ],
+    "decision": "monitor"
+  }
+]
