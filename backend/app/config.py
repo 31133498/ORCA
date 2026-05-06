@@ -12,10 +12,8 @@ class Settings:
     AT_API_KEY: str = os.getenv("AT_API_KEY", "")
     AT_PHONE_NUMBER: str = os.getenv("AT_PHONE_NUMBER", "")
 
-    # Redis Settings
-    REDIS_HOST: str = os.getenv("REDIS_HOST", "localhost")
-    REDIS_PORT: int = int(os.getenv("REDIS_PORT", 6379))
-    REDIS_DB: int = int(os.getenv("REDIS_DB", 0))
+    # Redis (single URL for production, e.g. redis://...)
+    REDIS_URL: str = os.getenv("REDIS_URL", "")
 
     # Baba Sikira profile (hardcoded)
     BABA_PROFILE = {

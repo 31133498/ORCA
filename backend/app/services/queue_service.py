@@ -8,16 +8,13 @@ from app.config import settings
 QUEUE_FILE = "conversation_queue.json"
 REDIS_KEY = "orca:complaints"
 
-# Redis client
-try:
-    r = redis.Redis(
-        host=settings.REDIS_HOST,
-        port=settings.REDIS_PORT,
-        db=settings.REDIS_DB,
-        decode_responses=True
-    )
-except:
-    r = None
+# Redis client (uses REDIS_URL if set, otherwise skips)
+r = None
+if settings.REDIS_URL:
+    try:
+        r = redis.from_url(settings.REDIS_URL, decode_responses=True)
+    except:
+        r = None
 
 def save_to_queue(chat_response, transcript: List[Dict[str, str]]):
     """Save each voice interaction to Redis (shared) or local JSON."""
