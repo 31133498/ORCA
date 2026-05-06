@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//tmp/**)",
+      "Bash(python3 -c ' *)",
+      "Bash(python3 *)",
+      "Bash(mkdir -p /mnt/c/Users/USER/ORCA/backend/app/routes)",
+      "Bash(rm /mnt/c/Users/USER/ORCA/backend/.gitkeep)",
+      "Bash(chmod +x /mnt/c/Users/USER/ORCA/backend/run.sh)",
+      "Bash(apt list *)",
+      "Bash(sudo apt-get install -y python3-venv python3-pip)",
+      "Bash(curl -sS -o /tmp/get-pip.py https://bootstrap.pypa.io/get-pip.py)",
+      "Bash(export PATH=\"$HOME/.local/bin:$PATH\")",
+      "Bash(curl -s http://127.0.0.1:8000/api/health)",
+      "Bash(curl -s \"http://127.0.0.1:8000/api/mentions?limit=3\")",
+      "Bash(curl -s \"http://127.0.0.1:8000/api/queue\")",
+      "Bash(curl -s \"http://127.0.0.1:8000/api/intelligence/priority-matrix?days=7\")",
+      "Bash(curl -s \"http://127.0.0.1:8000/api/intelligence/heatmap\")",
+      "Bash(curl -s \"http://127.0.0.1:8000/api/stats/live\")",
+      "Bash(npm install *)"
+    ]
+  }
+}

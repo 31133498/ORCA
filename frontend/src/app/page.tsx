@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 import ImagePlaceholder from '@/components/ImagePlaceholder';
 import {
   RiPhoneLine,
@@ -148,7 +149,9 @@ function Navbar() {
       </div>
 
       <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-        <GhostButton>Login</GhostButton>
+        <Link href="/dashboard" style={{ textDecoration: 'none' }}>
+          <GhostButton>Open dashboard</GhostButton>
+        </Link>
         <PrimaryButton>Request access</PrimaryButton>
       </div>
     </nav>
@@ -261,7 +264,9 @@ function Hero() {
           </p>
 
           <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-            <PrimaryButton large>Request access</PrimaryButton>
+            <Link href="/dashboard" style={{ textDecoration: 'none' }}>
+              <PrimaryButton large>Open dashboard</PrimaryButton>
+            </Link>
             <GhostButton large>See the platform</GhostButton>
           </div>
 
