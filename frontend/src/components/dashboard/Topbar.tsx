@@ -1,8 +1,9 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { RiRefreshLine, RiDownloadLine } from 'react-icons/ri';
+import { RiRefreshLine, RiDownloadLine, RiSunLine, RiMoonLine } from 'react-icons/ri';
 import { api } from '@/lib/api';
+import { useTheme } from '@/lib/theme';
 
 interface Props {
   title: string;
@@ -12,6 +13,7 @@ interface Props {
 }
 
 export default function Topbar({ title, subtitle, onRefresh, liveCount }: Props) {
+  const { theme, toggle } = useTheme();
   const [scraping, setScraping] = useState(false);
   const [scrapeMsg, setScrapeMsg] = useState<string | null>(null);
 
@@ -40,31 +42,38 @@ export default function Topbar({ title, subtitle, onRefresh, liveCount }: Props)
   }, [scrapeMsg]);
 
   return (
-    <header className="sticky top-0 z-40 flex h-14 flex-shrink-0 items-center justify-between border-b border-white/10 bg-black px-4 sm:px-6 backdrop-blur">
+    <header className="sticky top-0 z-40 flex h-14 flex-shrink-0 items-center justify-between border-b border-topbar-border bg-topbar-bg px-4 sm:px-6 backdrop-blur">
       <div className="min-w-0">
         <div className="flex items-center gap-2 sm:gap-3">
-          <h1 className="truncate text-[15px] font-semibold text-white sm:text-[17px]">{title}</h1>
+          <h1 className="truncate text-[15px] font-semibold text-topbar-text sm:text-[17px]">{title}</h1>
           <LiveDot count={liveCount} />
         </div>
         {subtitle ? (
-          <p className="mt-0.5 hidden truncate text-[11px] text-white/40 sm:block">{subtitle}</p>
+          <p className="mt-0.5 hidden truncate text-[11px] text-topbar-subtle sm:block">{subtitle}</p>
         ) : null}
       </div>
 
       <div className="ml-3 flex flex-shrink-0 items-center gap-2">
         {scrapeMsg ? (
-          <span className="hidden max-w-[200px] truncate font-data text-[10px] uppercase tracking-label text-white/40 lg:inline">
+          <span className="hidden max-w-[200px] truncate font-data text-[10px] uppercase tracking-label text-topbar-subtle lg:inline">
             {scrapeMsg}
           </span>
         ) : null}
         <button
           onClick={trigger}
           disabled={scraping}
-          className="hidden h-8 items-center gap-1.5 rounded-md border border-white/20 px-3 text-[12px] font-medium text-white/60 transition-colors hover:border-mtn-yellow hover:text-mtn-yellow disabled:cursor-not-allowed disabled:opacity-50 sm:inline-flex"
+          className="hidden h-8 items-center gap-1.5 rounded-md border border-topbar-muted px-3 text-[12px] font-medium text-topbar-subtle transition-colors hover:border-mtn-yellow hover:text-mtn-yellow disabled:cursor-not-allowed disabled:opacity-50 sm:inline-flex"
           aria-label="Run Apify X scrape now"
         >
           <RiRefreshLine size={13} className={scraping ? 'animate-spin' : undefined} />
           {scraping ? 'Scraping…' : 'Scrape X'}
+        </button>
+        <button
+          onClick={toggle}
+          className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-topbar-muted text-topbar-subtle transition-colors hover:bg-surface-hover hover:text-topbar-text"
+          aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+        >
+          {theme === 'dark' ? <RiSunLine size={15} /> : <RiMoonLine size={15} />}
         </button>
         <button
           onClick={onRefresh}

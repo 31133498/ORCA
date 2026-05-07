@@ -45,10 +45,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
       <div className="flex min-w-0 flex-1 flex-col overflow-hidden">
         {/* Mobile-only top bar with hamburger */}
-        <div className="flex h-12 flex-shrink-0 items-center gap-3 border-b border-white/10 bg-black px-4 md:hidden">
+        <div className="flex h-12 flex-shrink-0 items-center gap-3 border-b border-topbar-border bg-topbar-bg px-4 md:hidden">
           <button
             onClick={() => setSidebarOpen(true)}
-            className="flex h-8 w-8 items-center justify-center rounded-md text-white/60 hover:bg-white/10 hover:text-white"
+            className="flex h-8 w-8 items-center justify-center rounded-md text-topbar-subtle hover:bg-surface-hover hover:text-topbar-text"
             aria-label="Open navigation"
           >
             <RiMenuLine size={20} />
