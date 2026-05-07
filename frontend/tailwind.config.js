@@ -36,6 +36,14 @@ module.exports = {
           bg: '#1F1A05',
           ring: 'rgba(250,204,21,0.35)',
         },
+        // MTN Brand
+        mtn: {
+          yellow: '#FFCC00',
+          'yellow-dark': '#E6B800',
+          'yellow-light': '#FFF5B3',
+          black: '#000000',
+          dark: '#111111',
+        },
         status: {
           critical: '#EF4444',
           high: '#F87171',

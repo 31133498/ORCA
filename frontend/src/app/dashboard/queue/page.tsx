@@ -57,20 +57,22 @@ export default function QueuePage() {
         onRefresh={refresh}
       />
 
-      <main className="space-y-5 p-8">
-        <div className="flex flex-wrap items-center gap-3">
+      <main className="space-y-4 p-4 sm:p-6 md:p-8">
+        {/* Filter bar */}
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3">
           <span className="inline-flex items-center gap-1.5 font-data text-[11px] uppercase tracking-label text-ink-3">
             <RiFilterLine size={12} /> Risk
           </span>
-          <div className="flex items-center gap-1 rounded-md border border-chrome-1 bg-canvas-elevated p-0.5">
+          {/* Scrollable pill row on mobile */}
+          <div className="flex items-center gap-1 overflow-x-auto rounded-md border border-chrome-1 bg-canvas-elevated p-0.5">
             {RISK_FILTERS.map((r) => (
               <button
                 key={r}
                 onClick={() => setFilter(r)}
-                className={`inline-flex h-7 items-center gap-1.5 rounded-sm px-2.5 font-data text-[11px] font-semibold uppercase tracking-label transition-colors ${
+                className={`inline-flex h-7 flex-shrink-0 items-center gap-1.5 rounded-sm px-2.5 font-data text-[11px] font-semibold uppercase tracking-label transition-colors ${
                   filter === r
-                    ? 'bg-accent text-ink-inverse'
-                    : 'text-ink-2 hover:bg-canvas-sunken hover:text-ink-1'
+                    ? 'bg-mtn-yellow text-black'
+                    : 'text-ink-2 hover:bg-canvas-sunken'
                 }`}
               >
                 {r}
@@ -85,7 +87,7 @@ export default function QueuePage() {
               onChange={(e) => setOpenOnly(e.target.checked)}
               className="h-3.5 w-3.5 rounded-sm accent-[#FACC15]"
             />
-            Show only open
+            Open only
           </label>
         </div>
 
@@ -113,7 +115,7 @@ function Skeleton() {
   return (
     <div className="space-y-4">
       {[1, 2, 3].map((i) => (
-        <div key={i} className="h-44 animate-pulse rounded-lg border border-chrome-1 bg-canvas-elevated" />
+        <div key={i} className="h-40 animate-pulse rounded-lg border border-chrome-1 bg-canvas-elevated" />
       ))}
     </div>
   );

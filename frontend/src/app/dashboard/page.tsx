@@ -55,9 +55,9 @@ export default function OverviewPage() {
         liveCount={stats?.total_mentions_24h}
       />
 
-      <main className="space-y-6 p-8">
+      <main className="space-y-5 p-4 sm:p-6 md:p-8">
         {/* KPI strip */}
-        <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <section className="grid grid-cols-2 gap-3 lg:grid-cols-4">
           <StatCard
             label="Mentions · 24h"
             value={stats?.total_mentions_24h ?? '—'}
@@ -72,30 +72,30 @@ export default function OverviewPage() {
             icon={<RiCheckDoubleLine size={16} />}
           />
           <StatCard
-            label="Escalated to agent"
+            label="Escalated"
             value={stats?.escalated_24h ?? '—'}
             hint={stats ? `${stats.by_pathway.find((p) => p.pathway === 'ESCALATE_FLAG')?.count ?? 0} hard-flagged` : 'loading…'}
             emphasis="warning"
             icon={<RiUserUnfollowLine size={16} />}
           />
           <StatCard
-            label="Avg time to resolve"
+            label="Avg resolve time"
             value={stats ? durationSeconds(stats.avg_response_seconds) : '—'}
-            hint="from queued → resolved"
+            hint="queued → resolved"
             icon={<RiTimerLine size={16} />}
           />
         </section>
 
         {/* Stream + category mix */}
         <section className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-          <div className="rounded-lg border border-chrome-1 bg-canvas-elevated p-5 lg:col-span-2">
-            <div className="flex items-center justify-between">
+          <div className="rounded-lg border border-chrome-1 bg-canvas-elevated p-4 sm:p-5 lg:col-span-2">
+            <div className="flex items-start justify-between gap-3">
               <div>
                 <p className="font-data text-[10px] font-semibold uppercase tracking-label text-ink-3">
                   Mentions per hour · 24h
                 </p>
-                <p className="mt-1 text-[14px] text-ink-2">
-                  Live ingestion volume from Apify scraper into ORCA's classification pipeline.
+                <p className="mt-1 hidden text-[13px] text-ink-2 sm:block">
+                  Live ingestion volume from Apify scraper.
                 </p>
               </div>
               <span className="font-data text-[11px] uppercase tracking-label text-ink-3">
@@ -103,15 +103,15 @@ export default function OverviewPage() {
               </span>
             </div>
             <div className="mt-4">
-              <Sparkline data={stats?.timeseries ?? []} height={140} />
+              <Sparkline data={stats?.timeseries ?? []} height={120} color="#FFCC00" />
             </div>
           </div>
 
-          <div className="rounded-lg border border-chrome-1 bg-canvas-elevated p-5">
+          <div className="rounded-lg border border-chrome-1 bg-canvas-elevated p-4 sm:p-5">
             <p className="font-data text-[10px] font-semibold uppercase tracking-label text-ink-3">
               Category mix · 24h
             </p>
-            <div className="mt-3 h-[140px]">
+            <div className="mt-3 h-[120px] sm:h-[140px]">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart
                   data={stats?.by_category ?? []}
@@ -137,7 +137,7 @@ export default function OverviewPage() {
                       color: '#FAFAFA',
                     }}
                   />
-                  <Bar dataKey="count" fill="#FACC15" radius={[0, 3, 3, 0]} />
+                  <Bar dataKey="count" fill="#FFCC00" radius={[0, 3, 3, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -157,25 +157,25 @@ export default function OverviewPage() {
 
         {/* Top risk + recent stream */}
         <section className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-          <div className="rounded-lg border border-chrome-1 bg-canvas-elevated p-5">
+          <div className="rounded-lg border border-chrome-1 bg-canvas-elevated p-4 sm:p-5">
             <p className="font-data text-[10px] font-semibold uppercase tracking-label text-ink-3">
               Top churn-risk subscribers
             </p>
-            <ul className="mt-3 space-y-3">
+            <ul className="mt-3 space-y-2">
               {(stats?.top_risk ?? []).map((c, i) => (
                 <li
                   key={c.handle}
-                  className="flex items-center gap-3 rounded-md border border-chrome-1 bg-canvas-sunken p-3"
+                  className="flex items-center gap-3 rounded-md border border-chrome-1 bg-canvas-sunken p-2.5"
                 >
                   <span className="font-data text-[12px] text-accent">#{i + 1}</span>
                   <div className="min-w-0 flex-1">
                     <p className="truncate text-[13px] font-medium text-ink-1">{c.display_name}</p>
-                    <p className="font-data text-[11px] text-ink-3">
+                    <p className="truncate font-data text-[11px] text-ink-3">
                       @{c.handle} · {c.region} · {naira(c.arpu_naira)}
                     </p>
                   </div>
                   <span
-                    className={`rounded-md px-2 py-0.5 font-data text-[12px] font-semibold ${
+                    className={`flex-shrink-0 rounded-md px-2 py-0.5 font-data text-[12px] font-semibold ${
                       c.risk >= 90
                         ? 'bg-status-critical text-white'
                         : c.risk >= 70
@@ -220,7 +220,7 @@ function SectionHeader({
 }) {
   return (
     <div className="flex items-end justify-between">
-      <h2 className="text-[16px] font-semibold text-ink-1">{title}</h2>
+      <h2 className="text-[15px] font-semibold text-ink-1 sm:text-[16px]">{title}</h2>
       {link ? (
         <Link
           href={link.href}

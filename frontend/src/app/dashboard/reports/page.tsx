@@ -56,11 +56,12 @@ export default function ReportsPage() {
     <>
       <Topbar
         title="Intelligence reports"
-        subtitle={`Priority issue matrix · churn heatmap · pathway split — ${days}-day window`}
+        subtitle={`Priority matrix · churn heatmap · pathway split — ${days}-day window`}
         onRefresh={refresh}
       />
 
-      <main className="space-y-6 p-8">
+      <main className="space-y-5 p-4 sm:p-6 md:p-8">
+        {/* Window selector */}
         <div className="flex flex-wrap items-center gap-3">
           <span className="font-data text-[10px] font-semibold uppercase tracking-label text-ink-3">
             Window
@@ -71,7 +72,7 @@ export default function ReportsPage() {
                 key={d}
                 onClick={() => setDays(d)}
                 className={`h-7 rounded-sm px-3 font-data text-[11px] font-semibold uppercase tracking-label transition-colors ${
-                  days === d ? 'bg-accent text-ink-inverse' : 'text-ink-2 hover:bg-canvas-sunken hover:text-ink-1'
+                  days === d ? 'bg-mtn-yellow text-black' : 'text-ink-2 hover:bg-canvas-sunken'
                 }`}
               >
                 {d}d
@@ -81,7 +82,7 @@ export default function ReportsPage() {
         </div>
 
         <section>
-          <h2 className="text-[16px] font-semibold text-ink-1">Priority issue matrix</h2>
+          <h2 className="text-[15px] font-semibold text-ink-1 sm:text-[16px]">Priority issue matrix</h2>
           <p className="mt-0.5 text-[12px] text-ink-3">
             Score = volume × urgency × (1 + sentiment Δ) ÷ (1 + resolution rate). Highest = act first.
           </p>
@@ -91,28 +92,26 @@ export default function ReportsPage() {
         </section>
 
         <section className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-          <div className="rounded-lg border border-chrome-1 bg-canvas-elevated p-5 lg:col-span-2">
-            <div className="flex items-center justify-between">
-              <h2 className="text-[16px] font-semibold text-ink-1">Churn risk heatmap</h2>
-              <span className="font-data text-[11px] uppercase tracking-label text-ink-3">
-                Region × ARPU band
+          <div className="rounded-lg border border-chrome-1 bg-canvas-elevated p-4 sm:p-5 lg:col-span-2">
+            <div className="flex items-start justify-between gap-2">
+              <h2 className="text-[15px] font-semibold text-ink-1 sm:text-[16px]">Churn risk heatmap</h2>
+              <span className="flex-shrink-0 font-data text-[10px] uppercase tracking-label text-ink-3">
+                Region × ARPU
               </span>
             </div>
             <p className="mt-0.5 text-[12px] text-ink-3">
-              Avg churn risk per cell. Numbers below = customer count · {' '}
-              <span className="text-status-critical">!</span> = customers in CRITICAL band.
+              Avg churn risk per cell.{' '}
+              <span className="text-status-critical">!</span> = CRITICAL customers.
             </p>
-            <div className="mt-4">
-              {heatmap ? <HeatmapView data={heatmap} /> : <Skeleton h={220} />}
+            <div className="mt-4 overflow-x-auto">
+              {heatmap ? <HeatmapView data={heatmap} /> : <Skeleton h={200} />}
             </div>
           </div>
 
-          <div className="rounded-lg border border-chrome-1 bg-canvas-elevated p-5">
-            <h2 className="text-[16px] font-semibold text-ink-1">Resolution pathway split</h2>
-            <p className="mt-0.5 text-[12px] text-ink-3">
-              How ORCA routed every classified mention in the last 24h.
-            </p>
-            <div className="mt-4 h-[220px]">
+          <div className="rounded-lg border border-chrome-1 bg-canvas-elevated p-4 sm:p-5">
+            <h2 className="text-[15px] font-semibold text-ink-1 sm:text-[16px]">Pathway split</h2>
+            <p className="mt-0.5 text-[12px] text-ink-3">How ORCA routed mentions · last 24h.</p>
+            <div className="mt-4 h-[200px] sm:h-[220px]">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie
@@ -121,8 +120,8 @@ export default function ReportsPage() {
                     nameKey="pathway"
                     cx="50%"
                     cy="50%"
-                    innerRadius={50}
-                    outerRadius={75}
+                    innerRadius={45}
+                    outerRadius={70}
                     paddingAngle={2}
                   >
                     {(stats?.by_pathway ?? []).map((p) => (
@@ -149,9 +148,9 @@ export default function ReportsPage() {
           </div>
         </section>
 
-        <section className="rounded-lg border border-chrome-1 bg-canvas-elevated p-5">
-          <h2 className="text-[16px] font-semibold text-ink-1">Category volume · 24h</h2>
-          <div className="mt-3 h-[260px]">
+        <section className="rounded-lg border border-chrome-1 bg-canvas-elevated p-4 sm:p-5">
+          <h2 className="text-[15px] font-semibold text-ink-1 sm:text-[16px]">Category volume · 24h</h2>
+          <div className="mt-3 h-[220px] sm:h-[260px]">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={stats?.by_category ?? []} margin={{ left: 0, right: 8, top: 8, bottom: 36 }}>
                 <CartesianGrid stroke="#1C1C1C" vertical={false} />
@@ -174,7 +173,7 @@ export default function ReportsPage() {
                     color: '#FAFAFA',
                   }}
                 />
-                <Bar dataKey="count" fill="#FACC15" radius={[3, 3, 0, 0]} />
+                <Bar dataKey="count" fill="#FFCC00" radius={[3, 3, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>

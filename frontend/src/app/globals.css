@@ -16,6 +16,8 @@
   --accent: #FACC15;
   --accent-hover: #FDE047;
   --accent-deep: #CA8A04;
+  --mtn-yellow: #FFCC00;
+  --mtn-black: #000000;
 }
 
 * {
@@ -28,6 +30,7 @@ html {
   scroll-behavior: smooth;
   background-color: #0A0A0A;
   color-scheme: dark;
+  height: 100%;
 }
 
 body {
@@ -36,6 +39,9 @@ body {
   color: #FAFAFA;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+  /* Prevent horizontal scroll on mobile */
+  overflow-x: hidden;
 }
 
 ::selection {

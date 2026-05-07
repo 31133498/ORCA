@@ -17,7 +17,10 @@
       "Bash(curl -s \"http://127.0.0.1:8000/api/intelligence/priority-matrix?days=7\")",
       "Bash(curl -s \"http://127.0.0.1:8000/api/intelligence/heatmap\")",
       "Bash(curl -s \"http://127.0.0.1:8000/api/stats/live\")",
-      "Bash(npm install *)"
+      "Bash(npm install *)",
+      "Bash(git push *)",
+      "Bash(cat backend/requirements.txt)",
+      "Bash(cat backend/pyproject.toml)"
     ]
   }
 }

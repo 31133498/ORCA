@@ -2,8 +2,8 @@ import type { PriorityRow } from '@/lib/types';
 
 export default function PriorityMatrix({ rows }: { rows: PriorityRow[] }) {
   return (
-    <div className="overflow-hidden rounded-lg border border-chrome-1 bg-canvas-elevated">
-      <table className="w-full text-left text-[13px]">
+    <div className="overflow-x-auto rounded-lg border border-chrome-1 bg-canvas-elevated">
+      <table className="min-w-[680px] w-full text-left text-[13px]">
         <thead className="border-b border-chrome-1 bg-canvas-sunken">
           <tr>
             <Th>Category</Th>

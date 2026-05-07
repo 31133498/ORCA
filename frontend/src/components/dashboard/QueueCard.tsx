@@ -174,7 +174,7 @@ export default function QueueCard({ item, onChanged }: Props) {
               <button
                 disabled={!!busy || isFraud || draft.length === 0 || remaining < 0}
                 onClick={postReply}
-                className="inline-flex h-8 items-center gap-1.5 rounded-md bg-accent px-3 text-[12px] font-semibold text-ink-inverse transition-colors hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-40"
+                className="inline-flex h-8 items-center gap-1.5 rounded-md bg-mtn-yellow px-3 text-[12px] font-semibold text-black transition-colors hover:bg-mtn-yellow-dark disabled:cursor-not-allowed disabled:opacity-40"
               >
                 <FaXTwitter size={11} />
                 Post to X

@@ -19,12 +19,12 @@ const EMPHASIS = {
 
 export default function StatCard({ label, value, hint, trend, icon, emphasis = 'default' }: Props) {
   return (
-    <div className="group relative overflow-hidden rounded-lg border border-chrome-1 bg-canvas-elevated p-5 transition-colors hover:border-chrome-2">
+    <div className="rounded-lg border border-chrome-1 bg-canvas-elevated p-4 sm:p-5">
       <div className="flex items-start justify-between">
         <p className="font-data text-[11px] font-semibold uppercase tracking-label text-ink-3">{label}</p>
         {icon ? <span className="text-accent">{icon}</span> : null}
       </div>
-      <p className={`mt-3 font-data text-[32px] font-semibold leading-none tabular-nums ${EMPHASIS[emphasis]}`}>
+      <p className={`mt-2 font-data text-[28px] font-semibold leading-none tabular-nums sm:mt-3 sm:text-[32px] ${EMPHASIS[emphasis]}`}>
         {value}
       </p>
       <div className="mt-2 flex items-center gap-2 text-[12px] text-ink-3">

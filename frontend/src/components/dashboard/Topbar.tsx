@@ -23,7 +23,7 @@ export default function Topbar({ title, subtitle, onRefresh, liveCount }: Props)
       setScrapeMsg(
         res.live
           ? `Apify: ${res.scraped} fetched, ${res.inserted} new, ${res.classified} classified`
-          : 'Apify token not configured — running on seeded MTN dataset'
+          : 'Apify not configured — using seeded MTN data'
       );
       onRefresh?.();
     } catch (e) {
@@ -40,37 +40,39 @@ export default function Topbar({ title, subtitle, onRefresh, liveCount }: Props)
   }, [scrapeMsg]);
 
   return (
-    <header className="sticky top-0 z-40 flex h-16 items-center justify-between border-b border-chrome-1 bg-canvas-dark/90 px-8 backdrop-blur">
-      <div>
-        <div className="flex items-center gap-3">
-          <h1 className="text-[18px] font-semibold text-ink-1">{title}</h1>
+    <header className="sticky top-0 z-40 flex h-14 flex-shrink-0 items-center justify-between border-b border-white/10 bg-black px-4 sm:px-6 backdrop-blur">
+      <div className="min-w-0">
+        <div className="flex items-center gap-2 sm:gap-3">
+          <h1 className="truncate text-[15px] font-semibold text-white sm:text-[17px]">{title}</h1>
           <LiveDot count={liveCount} />
         </div>
-        {subtitle ? <p className="mt-0.5 text-[12px] text-ink-3">{subtitle}</p> : null}
+        {subtitle ? (
+          <p className="mt-0.5 hidden truncate text-[11px] text-white/40 sm:block">{subtitle}</p>
+        ) : null}
       </div>
 
-      <div className="flex items-center gap-2">
+      <div className="ml-3 flex flex-shrink-0 items-center gap-2">
         {scrapeMsg ? (
-          <span className="hidden font-data text-[11px] uppercase tracking-label text-ink-3 md:inline">
+          <span className="hidden max-w-[200px] truncate font-data text-[10px] uppercase tracking-label text-white/40 lg:inline">
             {scrapeMsg}
           </span>
         ) : null}
         <button
           onClick={trigger}
           disabled={scraping}
-          className="inline-flex h-9 items-center gap-2 rounded-md border border-chrome-1 bg-canvas-elevated px-3 text-[13px] font-medium text-ink-1 transition-colors hover:border-chrome-2 hover:bg-canvas-sunken disabled:cursor-not-allowed disabled:opacity-60"
+          className="hidden h-8 items-center gap-1.5 rounded-md border border-white/20 px-3 text-[12px] font-medium text-white/60 transition-colors hover:border-mtn-yellow hover:text-mtn-yellow disabled:cursor-not-allowed disabled:opacity-50 sm:inline-flex"
           aria-label="Run Apify X scrape now"
         >
-          <RiRefreshLine size={14} className={scraping ? 'animate-spin' : undefined} />
-          {scraping ? 'Scraping…' : 'Scrape X now'}
+          <RiRefreshLine size={13} className={scraping ? 'animate-spin' : undefined} />
+          {scraping ? 'Scraping…' : 'Scrape X'}
         </button>
         <button
           onClick={onRefresh}
-          className="inline-flex h-9 items-center gap-2 rounded-md bg-accent px-3 text-[13px] font-semibold text-ink-inverse transition-colors hover:bg-accent-hover"
+          className="inline-flex h-8 items-center gap-1.5 rounded-md bg-mtn-yellow px-3 text-[12px] font-semibold text-black transition-colors hover:bg-mtn-yellow-dark"
           aria-label="Refresh data"
         >
-          <RiDownloadLine size={14} />
-          Refresh
+          <RiDownloadLine size={13} />
+          <span className="hidden sm:inline">Refresh</span>
         </button>
       </div>
     </header>
@@ -80,15 +82,15 @@ export default function Topbar({ title, subtitle, onRefresh, liveCount }: Props)
 function LiveDot({ count }: { count?: number }) {
   return (
     <span
-      className="inline-flex items-center gap-1.5 rounded-full bg-accent/10 px-2 py-0.5 font-data text-[11px] font-semibold uppercase tracking-label text-accent ring-1 ring-accent/30"
+      className="inline-flex items-center gap-1 rounded-full bg-mtn-yellow/15 px-2 py-0.5 font-data text-[10px] font-semibold uppercase tracking-label text-mtn-yellow"
       aria-label="Live monitoring"
     >
-      <span className="relative flex h-2 w-2">
-        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60" />
-        <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+      <span className="relative flex h-1.5 w-1.5">
+        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-mtn-yellow opacity-60" />
+        <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-mtn-yellow" />
       </span>
       LIVE
-      {count !== undefined ? <span className="text-accent/80">· {count}</span> : null}
+      {count !== undefined ? <span className="text-mtn-yellow/60">· {count}</span> : null}
     </span>
   );
 }
