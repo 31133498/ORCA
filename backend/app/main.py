@@ -44,7 +44,12 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[settings.frontend_origin, "http://localhost:3000", "http://127.0.0.1:3000"],
+    allow_origins=[
+        "https://orca-ten-sigma.vercel.app",   # ← Your Vercel frontend
+        "http://localhost:3000",               # For local development
+        "http://127.0.0.1:3000",
+        settings.frontend_origin
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

@@ -176,5 +176,59 @@
       }
     ],
     "decision": "monitor"
+  },
+  {
+    "timestamp": "2026-05-07T07:59:55.279894",
+    "channel": "voice",
+    "customer": {
+      "name": "Baba Sikira",
+      "phone": "+2348123456789"
+    },
+    "complaint": "OTHER",
+    "churn_score": 65,
+    "summary": "User wants to manage data",
+    "transcript": [
+      {
+        "speaker": "user",
+        "text": "My data is finishing too fast"
+      },
+      {
+        "speaker": "agent",
+        "text": "I understand, Baba Sikira. I see you're on the MTN Pulse plan and have 1.5 GB of data remaining. I'll go ahead and reset your data session to help with that depletion."
+      },
+      {
+        "speaker": "user",
+        "text": "[Audio Message]"
+      },
+      {
+        "speaker": "agent",
+        "text": "E wo ni o, Baba Sikira! Mo ri pe data r\u1eb9 n l\u1ecd ni kiakia. Emi o tun data session r\u1eb9 b\u1eb9r\u1eb9 lati ran \u1ecd l\u1ecdw\u1ecd."
+      },
+      {
+        "speaker": "user",
+        "text": "[Audio Message]"
+      },
+      {
+        "speaker": "agent",
+        "text": "Hello Baba Sikira! I see you're checking your data balance, and it looks like you have 1.5 GB available right now. How can I assist you with it today?"
+      },
+      {
+        "speaker": "user",
+        "text": "[Audio Message]"
+      },
+      {
+        "speaker": "agent",
+        "text": "Hello Baba Sikira! I see you're interested in purchasing another data plan. I can help you explore options based on your current 1.5 GB balance."
+      },
+      {
+        "speaker": "user",
+        "text": "[Audio Message]"
+      },
+      {
+        "speaker": "agent",
+        "text": "Hello Baba Sikira! I see you're looking to manage your data. I can help with that."
+      }
+    ],
+    "decision": "monitor"
   }
 ]
