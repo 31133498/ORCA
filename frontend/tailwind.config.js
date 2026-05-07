@@ -12,28 +12,39 @@ module.exports = {
         mono: ['"DM Mono"', '"Fira Code"', 'monospace'],
       },
       colors: {
-        // Page surfaces (now dark)
-        canvas: '#0A0A0A',
-        'canvas-elevated': '#141414',
-        'canvas-sunken': '#1C1C1C',
-        'canvas-dark': '#000000',
+        // Page surfaces — resolve from CSS vars (theme-aware)
+        canvas: {
+          DEFAULT: 'var(--canvas)',
+          elevated: 'var(--canvas-elevated)',
+          sunken: 'var(--canvas-sunken)',
+          dark: 'var(--canvas-dark)',
+        },
         ink: {
-          1: '#FAFAFA',
-          2: '#A3A3A3',
-          3: '#6B7280',
-          inverse: '#0A0A0A',
+          1: 'var(--ink-1)',
+          2: 'var(--ink-2)',
+          3: 'var(--ink-3)',
+          inverse: 'var(--canvas)',
         },
         chrome: {
-          1: '#262626',
-          2: '#404040',
-          3: '#525252',
+          1: 'var(--chrome-1)',
+          2: 'var(--chrome-2)',
+          3: 'var(--chrome-3)',
         },
-        // Brand accent — yellow
+        // Topbar / nav chrome — theme-aware
+        topbar: {
+          bg: 'var(--topbar-bg)',
+          border: 'var(--topbar-border)',
+          text: 'var(--topbar-text)',
+          subtle: 'var(--topbar-subtle)',
+          muted: 'var(--topbar-muted)',
+        },
+        'surface-hover': 'var(--surface-hover)',
+        // Brand accent — hardcoded (opacity modifiers used: bg-accent/10 etc.)
         accent: {
           DEFAULT: '#FACC15',
           hover: '#FDE047',
           deep: '#CA8A04',
-          bg: '#1F1A05',
+          bg: 'var(--accent-bg)',
           ring: 'rgba(250,204,21,0.35)',
         },
         // MTN Brand
@@ -44,15 +55,16 @@ module.exports = {
           black: '#000000',
           dark: '#111111',
         },
+        // Status — base colors hardcoded (opacity modifiers used on these)
         status: {
           critical: '#EF4444',
           high: '#F87171',
           watch: '#FACC15',
           clear: '#22C55E',
           info: '#60A5FA',
-          'critical-bg': '#2A0E0E',
-          'watch-bg': '#1F1A05',
-          'clear-bg': '#0E2A1A',
+          'critical-bg': 'var(--status-critical-bg)',
+          'watch-bg': 'var(--status-watch-bg)',
+          'clear-bg': 'var(--status-clear-bg)',
         },
       },
       borderRadius: {
