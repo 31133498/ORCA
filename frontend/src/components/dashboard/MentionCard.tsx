@@ -1,6 +1,6 @@
-import { FaXTwitter } from 'react-icons/fa6';
+import { FaXTwitter, FaFacebook, FaInstagram, FaReddit } from 'react-icons/fa6';
 import { RiHeart3Line, RiRepeatLine, RiChat3Line, RiVerifiedBadgeFill } from 'react-icons/ri';
-import type { Mention } from '@/lib/types';
+import type { Mention, Platform } from '@/lib/types';
 import { compact, timeAgo } from '@/lib/format';
 import {
   CategoryChip,
@@ -11,9 +11,26 @@ import {
   UrgencyBadge,
 } from './Badge';
 
+const PLATFORM_META: Record<Platform, { Icon: React.ElementType; label: string; color: string }> = {
+  x:         { Icon: FaXTwitter,   label: 'View on X',         color: 'text-ink-3 hover:text-white' },
+  facebook:  { Icon: FaFacebook,   label: 'View on Facebook',  color: 'text-ink-3 hover:text-[#1877F2]' },
+  instagram: { Icon: FaInstagram,  label: 'View on Instagram', color: 'text-ink-3 hover:text-[#E1306C]' },
+  reddit:    { Icon: FaReddit,     label: 'View on Reddit',    color: 'text-ink-3 hover:text-[#FF4500]' },
+};
+
+const PLATFORM_BADGE: Record<Platform, string> = {
+  x:         'bg-white/10 text-white/60',
+  facebook:  'bg-[#1877F2]/15 text-[#1877F2]',
+  instagram: 'bg-[#E1306C]/15 text-[#E1306C]',
+  reddit:    'bg-[#FF4500]/15 text-[#FF4500]',
+};
+
 export default function MentionCard({ mention, compact: dense = false }: { mention: Mention; compact?: boolean }) {
   const c = mention.classification;
   const cust = mention.customer;
+  const platform = (mention.platform ?? 'x') as Platform;
+  const { Icon, label, color } = PLATFORM_META[platform];
+
   return (
     <article className="rounded-lg border border-chrome-1 bg-canvas-elevated p-4 transition-colors hover:border-chrome-2">
       <header className="flex items-start justify-between gap-4">
@@ -27,6 +44,10 @@ export default function MentionCard({ mention, compact: dense = false }: { menti
               {cust?.verified ? (
                 <RiVerifiedBadgeFill size={12} className="text-accent" aria-label="Verified" />
               ) : null}
+              <span className={`inline-flex items-center gap-0.5 rounded px-1.5 py-0.5 font-data text-[9px] font-semibold uppercase tracking-wide ${PLATFORM_BADGE[platform]}`}>
+                <Icon size={9} />
+                {platform}
+              </span>
             </div>
             <div className="font-data text-[11px] text-ink-3">
               @{cust?.handle || 'unknown'} · {timeAgo(mention.posted_at)} · {cust?.region || '—'}
@@ -66,10 +87,10 @@ export default function MentionCard({ mention, compact: dense = false }: { menti
           href={mention.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1 text-[12px] text-ink-3 hover:text-accent"
+          className={`inline-flex items-center gap-1 text-[12px] transition-colors ${color}`}
         >
-          <FaXTwitter size={11} />
-          View on X
+          <Icon size={11} />
+          {label}
         </a>
       </footer>
     </article>

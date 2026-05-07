@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { FaXTwitter } from 'react-icons/fa6';
+import { FaXTwitter, FaFacebook, FaInstagram, FaReddit } from 'react-icons/fa6';
 import {
   RiVerifiedBadgeFill,
   RiCheckLine,
@@ -23,11 +23,20 @@ interface Props {
 
 const REPLY_LIMIT = 240;
 
+const PLATFORM_ICON: Record<string, React.ElementType> = {
+  x: FaXTwitter, facebook: FaFacebook, instagram: FaInstagram, reddit: FaReddit,
+};
+const PLATFORM_LABEL: Record<string, string> = {
+  x: 'Post on X', facebook: 'Post on Facebook', instagram: 'Post on Instagram', reddit: 'Post on Reddit',
+};
+
 export default function QueueCard({ item, onChanged }: Props) {
   const m = item.mention;
   const c = m.classification!;
   const cust = m.customer;
   const isFraud = c.category === 'Fraud & Security';
+  const PlatformIcon = PLATFORM_ICON[m.platform ?? 'x'] ?? FaXTwitter;
+  const platformLabel = PLATFORM_LABEL[m.platform ?? 'x'] ?? 'Post on X';
 
   const [draft, setDraft] = useState(c.ai_reply);
   const [busy, setBusy] = useState<string | null>(null);
@@ -129,8 +138,8 @@ export default function QueueCard({ item, onChanged }: Props) {
             rel="noopener noreferrer"
             className="ml-auto inline-flex items-center gap-1 hover:text-accent"
           >
-            <FaXTwitter size={11} />
-            Open on X
+            <PlatformIcon size={11} />
+            Open post
           </a>
         </div>
 
@@ -176,8 +185,8 @@ export default function QueueCard({ item, onChanged }: Props) {
                 onClick={postReply}
                 className="inline-flex h-8 items-center gap-1.5 rounded-md bg-mtn-yellow px-3 text-[12px] font-semibold text-black transition-colors hover:bg-mtn-yellow-dark disabled:cursor-not-allowed disabled:opacity-40"
               >
-                <FaXTwitter size={11} />
-                Post to X
+                <PlatformIcon size={11} />
+                {platformLabel}
               </button>
             </div>
           </div>

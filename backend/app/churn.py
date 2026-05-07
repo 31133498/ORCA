@@ -44,6 +44,14 @@ CATEGORY_RISK_TIER = {
 }
 
 
+PLATFORM_REACH_WEIGHT = {
+    "facebook": 8,    # ~38-47M Nigerian users — widest mass-market reach
+    "instagram": 6,   # ~10M users — younger demographic
+    "x": 4,           # ~7.5M users — vocal but smaller
+    "reddit": 4,      # niche, tech-savvy
+}
+
+
 @dataclass
 class ChurnInput:
     category: str
@@ -56,6 +64,7 @@ class ChurnInput:
     customer_tenure_months: int
     customer_arpu_naira: int
     prior_complaints_30d: int
+    platform: str = "x"
 
 
 def score_churn(inp: ChurnInput) -> tuple[int, str, list[str]]:
@@ -106,9 +115,10 @@ def score_churn(inp: ChurnInput) -> tuple[int, str, list[str]]:
         score += 6
         factors.append(f"{inp.customer_followers:,} followers (+6)")
 
-    # 7. Public-channel risk: posting on X is itself elevated
-    score += 4
-    factors.append("Public X channel (+4)")
+    # 7. Platform reach risk — wider audience = higher reputational exposure
+    plat_w = PLATFORM_REACH_WEIGHT.get(inp.platform, 4)
+    score += plat_w
+    factors.append(f"Public {inp.platform.title()} channel (+{plat_w})")
 
     # 8. ARPU and tenure adjust threshold sensitivity
     if inp.customer_arpu_naira >= 8000 and inp.customer_tenure_months >= 24:

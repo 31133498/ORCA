@@ -85,6 +85,16 @@ def live_stats(db: Session = Depends(get_db)):
         )
         timeseries.append({"hour": bucket_end.strftime("%H:00"), "count": cnt})
 
+    by_platform = [
+        {"platform": p, "count": c}
+        for p, c in (
+            db.query(models.Mention.platform, func.count(models.Mention.id))
+            .filter(models.Mention.posted_at >= cutoff_24)
+            .group_by(models.Mention.platform)
+            .all()
+        )
+    ]
+
     top_risk = (
         db.query(
             models.Customer.handle, models.Customer.display_name,
@@ -107,6 +117,7 @@ def live_stats(db: Session = Depends(get_db)):
         "auto_resolve_rate": round(auto_resolved / total, 3) if total else 0.0,
         "by_category": by_category,
         "by_pathway": by_pathway,
+        "by_platform": by_platform,
         "timeseries": timeseries,
         "top_risk": [
             {

@@ -41,6 +41,8 @@ export interface EscalationMeta {
   final_reply: string;
 }
 
+export type Platform = 'x' | 'facebook' | 'instagram' | 'reddit';
+
 export interface Mention {
   id: number;
   tweet_id: string;
@@ -50,6 +52,7 @@ export interface Mention {
   retweets: number;
   replies: number;
   url: string;
+  platform?: Platform;
   customer: Customer | null;
   classification: Classification | null;
   escalation: EscalationMeta | null;
@@ -116,6 +119,7 @@ export interface LiveStats {
   auto_resolve_rate: number;
   by_category: Array<{ category: string; count: number }>;
   by_pathway: Array<{ pathway: Pathway; count: number }>;
+  by_platform: Array<{ platform: Platform; count: number }>;
   timeseries: Array<{ hour: string; count: number }>;
   top_risk: Array<{
     handle: string;

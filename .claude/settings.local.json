@@ -20,7 +20,11 @@
       "Bash(npm install *)",
       "Bash(git push *)",
       "Bash(cat backend/requirements.txt)",
-      "Bash(cat backend/pyproject.toml)"
+      "Bash(cat backend/pyproject.toml)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(pip show *)",
+      "Bash(pip3 show *)"
     ]
   }
 }

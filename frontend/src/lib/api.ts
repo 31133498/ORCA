@@ -52,6 +52,7 @@ export const api = {
     category?: string;
     pathway?: string;
     risk_level?: string;
+    platform?: string;
     search?: string;
     hours?: number;
     limit?: number;
@@ -84,6 +85,12 @@ export const api = {
     req<{ scraped: number; inserted: number; classified: number; live: boolean }>(
       `/api/mentions/scrape`,
       { method: 'POST', body: JSON.stringify({ handle, max_items }) }
+    ),
+
+  generatePosts: (platform: string, count = 3) =>
+    req<{ inserted: number; classified: number; platform: string }>(
+      `/api/mentions/generate?platform=${platform}&count=${count}`,
+      { method: 'POST' }
     ),
 
   queue: () => tryReq<QueueList>('/api/queue', MOCK_QUEUE_LIST),

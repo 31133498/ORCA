@@ -11,7 +11,7 @@ import {
   RiMenuLine,
   RiCloseLine,
 } from 'react-icons/ri';
-import { FaXTwitter } from 'react-icons/fa6';
+import { FaXTwitter, FaFacebook, FaInstagram, FaReddit } from 'react-icons/fa6';
 
 /* ─── Animation hooks ────────────────────────────────────────── */
 
@@ -178,13 +178,12 @@ function Hero() {
           </p>
 
           <h1 className="font-bold text-[36px] sm:text-[44px] lg:text-[56px] text-[#FAFAFA] leading-[1.15] tracking-[-0.02em] max-w-[560px] mb-5">
-            Your subscriber just tweeted their way out.{' '}
-            <span className="text-[#FACC15]">ORCA caught it.</span>
+            95.7 million subscribers. Complaints on 4 platforms.{' '}
+            <span className="text-[#FACC15]">One queue.</span>
           </h1>
 
           <p className="text-base sm:text-lg text-[#A3A3A3] leading-relaxed max-w-[460px] mb-10">
-            The omnichannel retention platform built for MTN, Airtel, Glo, and 9mobile.
-            Voice complaints and X posts. One queue. One score. One action.
+            ORCA unifies Facebook, Instagram, X, and Reddit complaints for MTN Nigeria into a single intelligence layer — scoring churn risk in real time and routing to agents before subscribers port out.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3">
@@ -254,6 +253,22 @@ function ProblemStatement() {
           <span className="text-[#FACC15]">you find out after.</span>
         </h2>
 
+        {/* Market stats bar */}
+        <div className="mb-10 grid grid-cols-2 sm:grid-cols-4 gap-3">
+          {[
+            { stat: '95.7M', label: 'MTN subscribers', sub: '51.6% market share (NCC 2026)' },
+            { stat: '38–47M', label: 'Facebook users (NG)', sub: 'Widest reach — mass-market' },
+            { stat: '10M', label: 'Instagram users (NG)', sub: 'Young, urban, vocal' },
+            { stat: '7.5M', label: 'X/Twitter users (NG)', sub: 'High-signal, loud minority' },
+          ].map(({ stat, label, sub }) => (
+            <div key={label} className="rounded-lg border border-[#262626] bg-[#141414] p-4">
+              <p className="font-mono text-[22px] font-bold text-[#FACC15]">{stat}</p>
+              <p className="text-[13px] font-semibold text-[#FAFAFA] mt-0.5">{label}</p>
+              <p className="text-[11px] text-[#737373] mt-0.5">{sub}</p>
+            </div>
+          ))}
+        </div>
+
         <div className="flex flex-col md:flex-row gap-6">
           <ProblemCard
             icon={<RiPhoneLine size={32} />}
@@ -262,21 +277,21 @@ function ProblemStatement() {
             stat="Avg response: 48h"
           />
           <ProblemCard
-            icon={<FaXTwitter size={32} />}
-            title="Twitter / X complaints go nowhere."
-            body="Your social team sees the tweet on Monday. The subscriber ported out on Friday."
-            stat="Avg response: 72h"
+            icon={<FaFacebook size={32} />}
+            title="Facebook posts reach 5× more subscribers."
+            body="A complaint on Facebook reaches 47M Nigerians. Your social team is only watching X — missing 80% of the signal."
+            stat="4 platforms, 0 unification"
           />
           <ProblemCard
             icon={<RiBarChartGroupedLine size={32} />}
-            title="Usage drop-offs never get flagged."
-            body="A subscriber drops from 10GB to 0.2GB. Nothing alerts. No one calls. Until they leave."
-            stat="Not tracked at all."
+            title="Fragmented signals. No single score."
+            body="X captures 7.5M users. Facebook captures 47M. Instagram 10M. Reddit is where engineers post analysis. Each silo misses churn."
+            stat="Signal fragmented across 4+"
           />
         </div>
 
         <p className="text-lg font-semibold text-[#FAFAFA] text-center mt-12">
-          ORCA <span className="text-[#FACC15]">connects all three.</span>
+          ORCA <span className="text-[#FACC15]">unifies all four into one churn signal.</span>
         </p>
       </div>
     </section>
@@ -315,14 +330,17 @@ function HowItWorks() {
 
         <div className="flex flex-wrap justify-center border border-[#262626] rounded-lg overflow-hidden w-fit mx-auto bg-[#141414]">
           {[
-            { icon: <RiPhoneLine size={14} />, label: 'Voice calls' },
-            { icon: <FaXTwitter size={14} />, label: 'X / Twitter' },
-            { icon: <RiBarChartGroupedLine size={14} />, label: 'Usage data' },
-            { icon: null, label: 'WhatsApp (roadmap)', muted: true },
-          ].map(({ icon, label, muted }, i, arr) => (
+            { icon: <FaFacebook size={14} />, label: 'Facebook', color: '#1877F2' },
+            { icon: <FaInstagram size={14} />, label: 'Instagram', color: '#E1306C' },
+            { icon: <FaXTwitter size={14} />, label: 'X / Twitter', color: '#FFFFFF' },
+            { icon: <FaReddit size={14} />, label: 'Reddit', color: '#FF4500' },
+            { icon: <RiPhoneLine size={14} />, label: 'Voice calls', color: '#FACC15' },
+            { icon: <RiBarChartGroupedLine size={14} />, label: 'Usage data', color: '#FACC15' },
+          ].map(({ icon, label, color }, i, arr) => (
             <div
               key={label}
-              className={`flex items-center gap-2 px-4 py-2.5 text-[13px] font-medium ${muted ? 'text-[#525252]' : 'text-[#FACC15]'} ${i < arr.length - 1 ? 'border-r border-[#262626]' : ''}`}
+              className={`flex items-center gap-2 px-4 py-2.5 text-[13px] font-medium ${i < arr.length - 1 ? 'border-r border-[#262626]' : ''}`}
+              style={{ color }}
             >
               {icon}
               <span>{label}</span>
@@ -364,9 +382,9 @@ function Features() {
           <FeatureCard icon={<RiPhoneLine size={32} />} title="Voice AI Agent"
             body="Handles calls in English, Yoruba, and Hausa. Retrieves CDR and billing context before the first word is spoken. Resolves or escalates with a full brief."
             imageNumber={3} imageDescription="Voice AI transcription and analysis interface" />
-          <FeatureCard icon={<FaXTwitter size={32} />} title="Social Intelligence"
-            body="Monitors every mention of your brand handle in real time. Classifies, scores urgency, and auto-replies to resolvable complaints within 3 minutes."
-            imageNumber={4} imageDescription="Live X/Twitter complaint monitoring stream" />
+          <FeatureCard icon={<FaFacebook size={32} />} title="Multi-Platform Intelligence"
+            body="Monitors Facebook, Instagram, X, and Reddit in real time. Facebook alone reaches 47M Nigerians — 6× the X audience. Every complaint, every platform, one queue."
+            imageNumber={4} imageDescription="Live multi-platform complaint monitoring stream" />
           <FeatureCard icon={<RiUserUnfollowLine size={32} />} title="Churn Risk Engine"
             body="Every interaction builds a real-time churn score. HIGH and CRITICAL subscribers are surfaced to agents with personalised retention offers - before they port."
             imageNumber={5} imageDescription="Nigeria region churn risk heatmap" />
@@ -525,7 +543,7 @@ function FinalCTA() {
           <PrimaryButton>Request access</PrimaryButton>
         </div>
         <p className="text-[13px] text-[#737373] mt-4">
-          MTN, Airtel, Glo, and 9mobile configurations available.
+          MTN Nigeria · 95.7M subscribers · 51.6% market share. Facebook, Instagram, X, Reddit + Voice.
         </p>
       </div>
     </section>

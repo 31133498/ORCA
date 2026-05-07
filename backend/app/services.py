@@ -61,6 +61,7 @@ def process_mention(db: Session, mention: models.Mention) -> models.Classificati
             customer_tenure_months=cust.tenure_months if cust else 0,
             customer_arpu_naira=cust.arpu_naira if cust else 0,
             prior_complaints_30d=prior,
+            platform=getattr(mention, "platform", "x"),
         )
     )
 

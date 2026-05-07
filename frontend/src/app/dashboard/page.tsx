@@ -8,8 +8,9 @@ import {
   RiTimerLine,
   RiUserUnfollowLine,
 } from 'react-icons/ri';
+import { FaXTwitter, FaFacebook, FaInstagram, FaReddit } from 'react-icons/fa6';
 import Link from 'next/link';
-import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import { Bar, BarChart, CartesianGrid, Cell, Pie, PieChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 
 import Topbar from '@/components/dashboard/Topbar';
 import StatCard from '@/components/dashboard/StatCard';
@@ -141,6 +142,37 @@ export default function OverviewPage() {
                 </BarChart>
               </ResponsiveContainer>
             </div>
+          </div>
+        </section>
+
+        {/* Platform breakdown */}
+        <section>
+          <SectionHeader title="Complaints by platform · 24h" />
+          <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-4">
+            {[
+              { key: 'facebook',  label: 'Facebook',  Icon: FaFacebook,  color: '#1877F2', reach: '38–47M users' },
+              { key: 'x',         label: 'X',         Icon: FaXTwitter,  color: '#FFFFFF',  reach: '7.5M users' },
+              { key: 'instagram', label: 'Instagram', Icon: FaInstagram, color: '#E1306C', reach: '10M users' },
+              { key: 'reddit',    label: 'Reddit',    Icon: FaReddit,    color: '#FF4500', reach: 'Niche/vocal' },
+            ].map(({ key, label, Icon, color, reach }) => {
+              const entry = stats?.by_platform?.find(p => p.platform === key);
+              const count = entry?.count ?? 0;
+              const total = stats?.by_platform?.reduce((s, p) => s + p.count, 0) || 1;
+              const pct = Math.round((count / total) * 100);
+              return (
+                <div key={key} className="rounded-lg border border-chrome-1 bg-canvas-elevated p-3">
+                  <div className="flex items-center gap-2">
+                    <Icon size={14} style={{ color }} />
+                    <span className="font-data text-[11px] font-semibold uppercase tracking-label text-ink-3">{label}</span>
+                  </div>
+                  <p className="mt-2 font-data text-[24px] font-semibold tabular-nums text-ink-1">{count}</p>
+                  <div className="mt-2 h-1.5 w-full rounded-full bg-chrome-1">
+                    <div className="h-1.5 rounded-full" style={{ width: `${pct}%`, background: color }} />
+                  </div>
+                  <p className="mt-1.5 font-data text-[10px] text-ink-3">{pct}% · {reach}</p>
+                </div>
+              );
+            })}
           </div>
         </section>
 

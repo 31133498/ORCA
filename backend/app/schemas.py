@@ -60,6 +60,7 @@ class MentionOut(BaseModel):
     retweets: int
     replies: int
     url: str
+    platform: str = "x"
     customer: CustomerOut | None
     classification: ClassificationOut | None
     escalation: EscalationOut | None
@@ -109,6 +110,7 @@ class StatsOut(BaseModel):
     auto_resolve_rate: float
     by_category: list[dict]
     by_pathway: list[dict]
+    by_platform: list[dict]
     timeseries: list[dict]
     top_risk: list[dict]
 

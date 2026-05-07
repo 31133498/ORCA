@@ -50,6 +50,7 @@ class Mention(Base):
     in_reply_to: Mapped[str] = mapped_column(String(64), default="")
     url: Mapped[str] = mapped_column(String(512), default="")
     raw_source: Mapped[str] = mapped_column(String(32), default="apify")
+    platform: Mapped[str] = mapped_column(String(32), default="x")
     ingested_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
 
     customer: Mapped[Customer | None] = relationship(back_populates="mentions")

@@ -2,6 +2,7 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from sqlalchemy import inspect, text
 
 from .config import settings
 from .db import Base, SessionLocal, engine
@@ -11,9 +12,20 @@ from .seed import seed_demo
 from .pipeline import process_unclassified
 
 
+def _run_migrations():
+    """Add columns that didn't exist in older schema versions."""
+    insp = inspect(engine)
+    cols = {c["name"] for c in insp.get_columns("mentions")}
+    with engine.connect() as conn:
+        if "platform" not in cols:
+            conn.execute(text("ALTER TABLE mentions ADD COLUMN platform VARCHAR DEFAULT 'x'"))
+            conn.commit()
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     Base.metadata.create_all(bind=engine)
+    _run_migrations()
     db = SessionLocal()
     try:
         seed_demo(db)
